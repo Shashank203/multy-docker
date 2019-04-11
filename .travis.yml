@@ -13,7 +13,7 @@ after_success:
   - docker build -t shashankpatel/multy-server ./server
   - docker build -t shashankpatel/multy-worker ./worker
   - docker build -t shashankpatel/multy-nginx ./nginx
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
   - docker push shashankpatel/multy-client
   - docker push shashankpatel/multy-server
   - docker push shashankpatel/multy-worker
