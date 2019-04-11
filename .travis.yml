@@ -18,3 +18,16 @@ after_success:
   - docker push shashankpatel/multy-server
   - docker push shashankpatel/multy-worker
   - docker push shashankpatel/multy-nginx 
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multy-docker"
+  env: "MultyDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-729702393031"
+  bucket_path: "docker-multy"
+  on:
+    branch: master
+  access_key_id: $AWS_access_key
+  secret_access_key: 
+    secure: "$AWS_secret_key"

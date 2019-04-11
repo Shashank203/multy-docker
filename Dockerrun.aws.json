@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": "2",
+    "containerDefinations":[
+        {
+            "name": "client",
+            "image": "shashankpatel/multy-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image":"shashankpatel/multy-server",
+            "hostname": "api",
+            "essential":false
+        },
+        {
+            "name": "worker",
+            "image": "shashankpatel/multy-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        { 
+            "name": "nginx",
+            "image": "shashankpatel/multy-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "PortMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "client",
+                "server"
+            ]
+        }
+    ]
+}
